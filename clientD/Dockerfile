@@ -10,11 +10,11 @@ FROM python:3.6
 WORKDIR /client
 
 # Install any needed packages specified in requirements.txt
-#COPY ./requirements.txt /client
-#RUN pip install --upgrade pip
-#RUN pip install --upgrade setuptools
-#RUN pip install -r requirements.txt
+COPY . /client
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+RUN pip install -r requirements.txt
 
 # Run mainAPI.py when the container launches
-COPY . /client
+#COPY . /client
 CMD python /client/client.py
