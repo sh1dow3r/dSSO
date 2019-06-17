@@ -10,10 +10,20 @@ EXPOSE 1800
 WORKDIR /api
 
 # Install any needed packages specified in requirements.txt
-COPY ./requirements.txt /api
+COPY ./requirements.txt /api/requirements.txt
+
+#upgrade pip to avoid future issues, installing requirements
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade setuptools
+RUN pip install --no-cache-dir -r requirements.txt
+
+#setting up environment variables for docker and flask
+ENV FLASK_APP mainAPI.py
+ENV FLASK_RUN_HOST 0.0.0.0
 
 # Run mainAPI.py when the container launches
-COPY . /app
-CMD python mainAPI.py
+COPY . /api/
+CMD make /app
+CMD python /api/mainAPI.py
+
+

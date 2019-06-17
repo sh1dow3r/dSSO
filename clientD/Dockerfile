@@ -2,7 +2,7 @@
 FROM python:3.6
 
 # The EXPOSE instruction indicates the ports on which a container # # will listen for connections
-EXPOSE 1800
+EXPOSE 1802
 
 # Sets the working directory for following COPY and CMD instructions
 # Notice we haven’t created a directory by this name - this
@@ -12,6 +12,7 @@ WORKDIR /client
 # Install any needed packages specified in requirements.txt
 COPY ./requirements.txt /client
 RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
 RUN pip install -r requirements.txt
 
 # Run mainAPI.py when the container launches
