@@ -10,11 +10,10 @@ EXPOSE 1801
 WORKDIR /server
 
 # Install any needed packages specified in requirements.txt
-COPY ./requirements.txt /server
+COPY . /server
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip install -r requirements.txt
 
 # Run server.py when the container launches
-COPY . /server
 CMD python server.py

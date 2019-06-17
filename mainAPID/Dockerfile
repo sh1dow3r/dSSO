@@ -13,6 +13,7 @@ WORKDIR /api
 #COPY ./requirements.txt /api/requirements.txt
 
 #upgrade pip to avoid future issues, installing requirements
+COPY . /api/
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip install --no-cache-dir -r requirements.txt
@@ -22,7 +23,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 #ENV FLASK_RUN_HOST 0.0.0.0
 
 # Run mainAPI.py when the container launches
-COPY . /api/
 CMD make /api
 CMD python /api/mainAPI.py
 
