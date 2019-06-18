@@ -5,8 +5,11 @@ services:
    restart: always
    ports:
       - "1800:1800"
-
-
+  db:
+   image: postgres:10
+   env_file: .env
+   expose:
+     - 5432
   server:
     build: ./serverD/
     restart: always
@@ -18,5 +21,3 @@ services:
     restart: always
     ports:
       - "80:80"
-
-
