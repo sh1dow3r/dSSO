@@ -36,8 +36,10 @@ db = SQLAlchemy(app)
 
 
 class User(db.Model):
-    username = db.Column(db.String(80), unique=True)
-    pw_hash = db.Column(db.String(80))
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(128), unique=True, nullable=False)
+    pw_hash = db.Column(db.String(128), nullable=False)
     token = db.Column(db.String(256))
 
     def __init__(self, username, pw_hash, token):
@@ -62,7 +64,7 @@ def main():
     dbstatus = False
     while dbstatus == False:
         try:
-            db.create_all()
+            db.create_all() 
         except:
             time.sleep(2)
         else:
@@ -72,7 +74,6 @@ def main():
 
 
 if __name__ == '__main__':
-
     main()
 
 
